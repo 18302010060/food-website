@@ -2,12 +2,14 @@ package com.example.foodwebsite.Entity;
 
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 
 @Data
+@NoArgsConstructor
 @Entity
 public class RestReview {
     @Id
@@ -21,8 +23,11 @@ public class RestReview {
     private double ambienceRating;
     private int recommended;
     private String raw;
+    private String dishes;
+    private String tags;
 
     public double getOverallRating() {
         return (foodRating + serviceRating + ambienceRating) / 3.0;
     }
+
 }
