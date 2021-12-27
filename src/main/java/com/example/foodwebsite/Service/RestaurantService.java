@@ -1,6 +1,6 @@
 
 package com.example.foodwebsite.Service;
-import com.example.foodwebsite.Entity.DinnerReview;
+import com.example.foodwebsite.Entity.RestReview;
 import com.example.foodwebsite.Entity.RestDish;
 import com.example.foodwebsite.Entity.RestTag;
 import com.example.foodwebsite.Entity.Restaurant;
@@ -14,8 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -109,18 +107,18 @@ public class RestaurantService {
 
         }
         map.put("RestDish",dishes);
-        List<DinnerReview> dinnerReviews = dinnerReviewRepository.findAllByRestid(id);
+        List<RestReview> restReviews = dinnerReviewRepository.findAllByRestid(id);
         List<Map<String,Object>> reviews = new LinkedList<>();
-        for(DinnerReview review:dinnerReviews){
+        for(RestReview review: restReviews){
             Map<String,Object> dinnerreview = new HashMap<>();
             dinnerreview.put("Raw",review.getRaw());
             dinnerreview.put("Recommended",review.getRecommended());
             dinnerreview.put("Anonymous",review.getAnonymous());
-            dinnerreview.put("AveragePrice",review.getAverageprice());
-            dinnerreview.put("OverallRating",review.getOverallrating());
-            dinnerreview.put("ServiceRating",review.getServicerating());
-            dinnerreview.put("FoodRating",review.getFoodrating());
-            dinnerreview.put("AmbienceRating",review.getAmbiencerating());
+            dinnerreview.put("AveragePrice",review.getAveragePrice());
+            dinnerreview.put("OverallRating",review.getOverallRating());
+            dinnerreview.put("ServiceRating",review.getServiceRating());
+            dinnerreview.put("FoodRating",review.getFoodRating());
+            dinnerreview.put("AmbienceRating",review.getAmbienceRating());
             reviews.add(dinnerreview);
 
         }
