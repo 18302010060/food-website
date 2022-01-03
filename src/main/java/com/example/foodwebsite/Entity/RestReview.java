@@ -5,12 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import java.math.BigDecimal;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
-@Entity
+@Entity(name = "rest_review")
 public class RestReview {
     @Id
     private Long id;
@@ -29,5 +32,8 @@ public class RestReview {
     public double getOverallRating() {
         return (foodRating + serviceRating + ambienceRating) / 3.0;
     }
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "reviewId")
+    private List<SubReview> subReviews = new ArrayList<>();
 
 }
