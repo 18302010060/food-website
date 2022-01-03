@@ -2,6 +2,7 @@ package com.example.foodwebsite.Controller;
 
 
 import com.example.foodwebsite.Entity.RestReview;
+import com.example.foodwebsite.Entity.SubReview;
 import com.example.foodwebsite.Service.RestReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,5 +37,12 @@ public class ReviewController {
         return ResponseEntity.ok(restReviewService.
                 selectReviews(uid, anonymous.intValue(), recommended.intValue(), lastId, 20)
         );
+    }
+
+    @PostMapping("user/{uid}/restaurant/review/{reviewId}/sub-review")
+    public ResponseEntity<?> createSubReview(@PathVariable Long reviewId, @PathVariable Long uid,
+                                          @RequestBody SubReview detail) {
+        final boolean res = restReviewService.createSubReview(reviewId, uid, detail);
+        return ResponseEntity.ok(res);
     }
 }
