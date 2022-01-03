@@ -107,7 +107,7 @@ public class RestaurantService {
 
         }
         map.put("RestDish",dishes);
-        List<RestReview> restReviews = dinnerReviewRepository.findAllByRestid(id);
+        List<RestReview> restReviews = dinnerReviewRepository.findAllByRestId(id);
         List<Map<String,Object>> reviews = new LinkedList<>();
         for(RestReview review: restReviews){
             Map<String,Object> dinnerreview = new HashMap<>();

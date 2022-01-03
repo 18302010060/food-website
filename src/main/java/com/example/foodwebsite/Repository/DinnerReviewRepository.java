@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface DinnerReviewRepository extends CrudRepository<RestReview,Long> {
-List<RestReview> findAllByRestid(Long id);
+List<RestReview> findAllByRestId(Long id);
 
 
 
