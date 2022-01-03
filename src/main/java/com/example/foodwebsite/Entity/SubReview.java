@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 @Data
 @NoArgsConstructor
-@Entity
+@Entity(name = "sub_review")
 public class SubReview {
     @Id
     private Long id;

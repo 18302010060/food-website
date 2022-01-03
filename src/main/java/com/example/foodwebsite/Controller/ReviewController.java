@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RequiredArgsConstructor
+@RestController
 public class ReviewController {
     private final RestReviewService restReviewService;
 

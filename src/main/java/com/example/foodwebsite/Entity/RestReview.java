@@ -13,7 +13,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-@Entity
+@Entity(name = "rest_review")
 public class RestReview {
     @Id
     private Long id;
