@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class RestReview {
     private String raw;
     private String dishes;
     private String tags;
+    private Date createAt;
 
     public double getOverallRating() {
         return (foodRating + serviceRating + ambienceRating) / 3.0;

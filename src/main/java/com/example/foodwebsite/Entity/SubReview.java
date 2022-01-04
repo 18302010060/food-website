@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.sql.Date;
 
 @Data
 @NoArgsConstructor
@@ -16,4 +17,5 @@ public class SubReview {
     private Long uid;
     private int anonymous;
     private String raw;
+    private Date createAt;
 }
