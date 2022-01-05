@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.sql.Date;
 
 @Data
@@ -18,4 +19,6 @@ public class SubReview {
     private int anonymous;
     private String raw;
     private Date createAt;
+    @Transient
+    private String nickname;
 }

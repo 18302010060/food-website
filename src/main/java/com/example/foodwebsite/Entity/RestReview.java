@@ -4,10 +4,7 @@ package com.example.foodwebsite.Entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +27,9 @@ public class RestReview {
     private String dishes;
     private String tags;
     private Date createAt;
+
+    @Transient
+    private String nickname;
 
     public double getOverallRating() {
         return (foodRating + serviceRating + ambienceRating) / 3.0;
