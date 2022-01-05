@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -26,7 +26,7 @@ public class RestReview {
     private String raw;
     private String dishes;
     private String tags;
-    private Date createAt;
+    private Date createdAt;
 
     @Transient
     private String nickname;
@@ -35,7 +35,7 @@ public class RestReview {
         return (foodRating + serviceRating + ambienceRating) / 3.0;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "reviewId")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "reviewId")
     private List<SubReview> subReviews = new ArrayList<>();
 
 }

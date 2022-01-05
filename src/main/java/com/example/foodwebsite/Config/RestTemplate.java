@@ -1,7 +1,6 @@
 package com.example.foodwebsite.Config;
 
 
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 public class RestTemplate {
 
     @Bean
-    @LoadBalanced
+//    @LoadBalanced
     public org.springframework.web.client.RestTemplate getRestTemplate() {
         return new org.springframework.web.client.RestTemplate();
     }

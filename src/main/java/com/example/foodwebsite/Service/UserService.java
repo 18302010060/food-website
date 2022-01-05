@@ -18,7 +18,7 @@ public class UserService {
 
     public List<UidNickname> queryUsernames(List<Long> uids) {
         final ResponseEntity<UidNickname[]> res = restTemplate.
-                postForEntity("http://userService/user/nicknames", uids, UidNickname[].class);
+                postForEntity("http://182.61.41.104:8080/userService/user/nicknames", uids, UidNickname[].class);
         if (res.getBody() == null) {
             return Collections.emptyList();
         }

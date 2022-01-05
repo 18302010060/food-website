@@ -61,6 +61,9 @@ public class RestReviewService {
                 }
             }
         }
+        if (uids.isEmpty()) {
+            return;
+        }
         final List<UidNickname> uidNicknames = userService.queryUsernames(uids);
         final HashMap<Long, String> mappings = new HashMap<>();
         for (final UidNickname v : uidNicknames) {

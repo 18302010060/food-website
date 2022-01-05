@@ -18,7 +18,7 @@ public class SubReview {
     private Long uid;
     private int anonymous;
     private String raw;
-    private Date createAt;
+    private Date createdAt;
     @Transient
     private String nickname;
 }
