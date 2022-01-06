@@ -28,21 +28,23 @@ public class ReviewController {
     }
 
     @GetMapping("/restaurant/{restId}/review")
-    public ResponseEntity<?> getReviews(@PathVariable Long restId, @RequestParam Long lastId) {
-        return ResponseEntity.ok(restReviewService.selectReviews(restId, lastId, 20));
+    public ResponseEntity<?> getReviews(@PathVariable Long restId, @RequestParam Long lastId,
+                                        @RequestParam(required = false, defaultValue = "0x7fffffff") Integer limit) {
+        return ResponseEntity.ok(restReviewService.selectReviews(restId, lastId, limit));
     }
 
     @GetMapping("/user/{uid}/review")
     public ResponseEntity<?> getReviews(@PathVariable Long uid, Long anonymous, @RequestParam Long recommended,
-                                        @RequestParam Long lastId) {
+                                        @RequestParam Long lastId,
+                                        @RequestParam(required = false, defaultValue = "0x7fffffff") Integer limit) {
         return ResponseEntity.ok(restReviewService.
-                selectReviews(uid, anonymous.intValue(), recommended.intValue(), lastId, 20)
+                selectReviews(uid, anonymous.intValue(), recommended.intValue(), lastId, limit)
         );
     }
 
     @PostMapping("user/{uid}/restaurant/review/{reviewId}/sub-review")
     public ResponseEntity<?> createSubReview(@PathVariable Long reviewId, @PathVariable Long uid,
-                                          @RequestBody SubReview detail) {
+                                             @RequestBody SubReview detail) {
         final boolean res = restReviewService.createSubReview(reviewId, uid, detail);
         return ResponseEntity.ok(res);
     }
