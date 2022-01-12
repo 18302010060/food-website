@@ -40,7 +40,7 @@ public interface RestaurantRepository extends CrudRepository<Restaurant,Long> {
     @Query("FROM Restaurant u WHERE (u.name LIKE CONCAT('%',:name,'%') or :name is null) AND (u.type = :type or :type = 0)")
     List<Restaurant> findRestaurantWithPartName(@Param("name") String name,@Param("type") int type);
 
-
+    List<Restaurant> findRestaurantByIdIn(List<Long> restIds);
 
 
 

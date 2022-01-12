@@ -30,6 +30,8 @@ public class RestReview {
 
     @Transient
     private String nickname;
+    @Transient
+    private Restaurant restaurant;
 
     public double getOverallRating() {
         return (foodRating + serviceRating + ambienceRating) / 3.0;

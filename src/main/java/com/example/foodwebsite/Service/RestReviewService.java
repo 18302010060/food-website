@@ -2,8 +2,10 @@ package com.example.foodwebsite.Service;
 
 import com.example.foodwebsite.Domain.UidNickname;
 import com.example.foodwebsite.Entity.RestReview;
+import com.example.foodwebsite.Entity.Restaurant;
 import com.example.foodwebsite.Entity.SubReview;
 import com.example.foodwebsite.Repository.RestReviewRepository;
+import com.example.foodwebsite.Repository.RestaurantRepository;
 import com.example.foodwebsite.Repository.SubReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -13,12 +15,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
 public class RestReviewService {
     private final RestReviewRepository restReviewRepository;
     private final SubReviewRepository subReviewRepository;
+    private final RestaurantRepository restaurantRepository;
 
     private final UserService userService;
 
@@ -46,6 +50,20 @@ public class RestReviewService {
         final List<RestReview> res = restReviewRepository.
                 findByUidAndAnonymousAndRecommendedAndIdGreaterThan(uid, anonymous, recommended, lastId, Pageable.ofSize(limit));
         fillNicknames(res);
+        return res;
+    }
+
+    public List<RestReview> selectRecommendedRestaurants(Long uid, Long lastId, int limit) {
+        final List<RestReview> res = selectReviews(uid, 0, 1, lastId, limit);
+        final List<Long> restIds = res.stream().map(RestReview::getRestId).collect(Collectors.toList());
+        final List<Restaurant> rests = restaurantRepository.findRestaurantByIdIn(restIds);
+        final HashMap<Long, Restaurant> idRest = new HashMap<>();
+        for (final Restaurant rest : rests) {
+            idRest.put(rest.getId(), rest);
+        }
+        for (final RestReview rv : res) {
+            rv.setRestaurant(idRest.getOrDefault(rv.getRestId(), null));
+        }
         return res;
     }
 
