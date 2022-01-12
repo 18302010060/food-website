@@ -14,9 +14,9 @@ public class RestaurantController {
     private final RestReviewService restReviewService;
 
     @GetMapping("/user/{uid}/restaurant/recommended")
-    public ResponseEntity<?> getReviews(@PathVariable Long uid,
-                                        @RequestParam Long lastId,
-                                        @RequestParam(required = false, defaultValue = "0x7fffffff") Integer limit) {
+    public ResponseEntity<?> getRecommendedRestaurants(@PathVariable Long uid,
+                                                       @RequestParam Long lastId,
+                                                       @RequestParam(required = false, defaultValue = "0x7fffffff") Integer limit) {
         return ResponseEntity.ok(restReviewService.selectRecommendedRestaurants(uid, lastId, limit)
         );
     }
